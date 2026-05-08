@@ -3,7 +3,7 @@
 
     <x-error-message :errors="$errors" />
 
-    <form action="{{ route('post.create') }}" method="post">
+    <form action="{{ route('post.index') }}" method="post">
         @csrf
 
         <div>
@@ -15,7 +15,7 @@
             <textarea name="content" id="content">{{ old('content') }}</textarea>
         </div>
         <div>
-            <input type="submit" value="Create">
+            <input type="submit" value="create">
         </div>
     </form>
 </x-app-layout>

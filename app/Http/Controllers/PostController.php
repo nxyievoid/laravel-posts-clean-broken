@@ -29,15 +29,12 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string'
         ]);
 
-        $post = Post::create([
-            'title' => title,
-            'content' => content
-        ]);
+        $post = Post::create($validated);
 
         return redirect()->route('post.show', $post)->with('status_code', 'Post created successfully.');
     }
@@ -79,7 +76,7 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
         $post->delete();
         return redirect()->route('post.index')->with('status', 'Post deleted successfully.');
